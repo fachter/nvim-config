@@ -15,6 +15,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
-require("vim-options")
-require("lazy").setup("plugins")
+vim.g.mapleader = " "
+
+require("lazy").setup("plugins", {
+	change_detection = {
+		enabled = true,
+		notify = false,
+	},
+})
+-- require("vim-options")
+require("core.options")
+require("core.keymaps")
 

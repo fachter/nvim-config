@@ -28,7 +28,8 @@ return {
   config = function(_, opts)
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
-    vim.keymap.set("n", "<C-f>", ":NvimTreeOpen <CR>")
     require("nvim-tree").setup(opts)
+    local view = require("nvim-tree.view")
+    view.View.winopts.relativenumber = true
   end,
 }
