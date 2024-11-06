@@ -13,34 +13,32 @@ keymap.set("n", "<leader>ef", ":Neotree filesystem reveal left<CR>")
 keymap.set("n", "<leader>eg", ":Neotree float git_status<CR>")
 
 -- Harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
 vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
-keymap.set("n", "<leader>ha", require("harpoon.mark").add_file)
-keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu)
-keymap.set("n", "<leader>h1", function()
-  require("harpoon.ui").nav_file(1)
-end)
-keymap.set("n", "<leader>h2", function()
-  require("harpoon.ui").nav_file(2)
-end)
-keymap.set("n", "<leader>h3", function()
-  require("harpoon.ui").nav_file(3)
-end)
-keymap.set("n", "<leader>h4", function()
-  require("harpoon.ui").nav_file(4)
-end)
-keymap.set("n", "<leader>h5", function()
-  require("harpoon.ui").nav_file(5)
-end)
-keymap.set("n", "<leader>h6", function()
-  require("harpoon.ui").nav_file(6)
-end)
-keymap.set("n", "<leader>h7", function()
-  require("harpoon.ui").nav_file(7)
-end)
-keymap.set("n", "<leader>h8", function()
-  require("harpoon.ui").nav_file(8)
-end)
-keymap.set("n", "<leader>h9", function()
-  require("harpoon.ui").nav_file(9)
-end)
+keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
+keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+keymap.set("n", "<leader>h1", function() harpoon:list().select(1) end)
+keymap.set("n", "<leader>h2", function() harpoon:list().select(2) end)
+keymap.set("n", "<leader>h3", function() harpoon:list().select(3) end)
+keymap.set("n", "<leader>h4", function() harpoon:list().select(4) end)
+keymap.set("n", "<leader>h5", function() harpoon:list().select(5) end)
+keymap.set("n", "<leader>h6", function() harpoon:list().select(6) end)
+keymap.set("n", "<leader>h7", function() harpoon:list().select(7) end)
+keymap.set("n", "<leader>h8", function() harpoon:list().select(8) end)
+keymap.set("n", "<leader>h9", function() harpoon:list().select(9) end)
+
+-- Persistence
+-- load the session for the current directory
+vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end)
+-- select a session to load
+vim.keymap.set("n", "<leader>qS", function() require("persistence").select() end)
+-- load the last session
+vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end)
+-- stop Persistence => session won't be saved on exit
+vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end)
+
+
+--
+
